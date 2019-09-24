@@ -243,8 +243,9 @@ class FloorGoods extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: ScreenUtil().setHeight(640),
+      height: ScreenUtil().setHeight(1280),
       child: ListView.builder(
+          physics: NeverScrollableScrollPhysics(),
           itemCount: list.length,
           itemBuilder: (context,index){
           return Column(
@@ -260,9 +261,17 @@ class FloorGoods extends StatelessWidget {
 
   //楼层标题
   Widget _floorTitle(item){
-    return Container(
-      height: ScreenUtil().setHeight(160),
-      child: Image.network(item["titleUrl"],fit: BoxFit.cover,),
+    return Row(
+      children: <Widget>[
+        Expanded(
+          flex: 1,
+          child: Container(
+            height: ScreenUtil().setHeight(160),
+            padding: EdgeInsets.only(top: 10,bottom: 10),
+            child: Image.network(item["titleUrl"],fit: BoxFit.cover,),
+          ),
+        )
+      ],
     );
   }
   //第一层row
@@ -270,27 +279,29 @@ class FloorGoods extends StatelessWidget {
     return Container(
       height: ScreenUtil().setHeight(320),
       child: Row(
-        children: <Widget>[
-          Expanded(
-              flex: 1,
-              child:Image.network(item["content"][0],fit: BoxFit.cover,)
-          ),
-          Expanded(
-              flex: 1,
-              child: Column(
-                children: <Widget>[
-                  Expanded(
-                      flex: 1,
-                      child:Image.network(item["content"][1],fit: BoxFit.cover,)
-                  ),
-                  Expanded(
-                      flex: 1,
-                      child:Image.network(item["content"][2],fit: BoxFit.cover,)
-                  ),
-                ],
-              )
-          )
-        ],
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Expanded(
+                flex: 1,
+                child:Image.network(item["content"][0],fit: BoxFit.cover,)
+            ),
+            Expanded(
+                flex: 1,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Expanded(
+                        flex: 1,
+                        child:Image.network(item["content"][1],fit: BoxFit.cover,)
+                    ),
+                    Expanded(
+                        flex: 1,
+                        child:Image.network(item["content"][2],fit: BoxFit.cover,)
+                    ),
+                  ],
+                )
+            )
+          ],
       ),
     );
   }
@@ -299,6 +310,7 @@ class FloorGoods extends StatelessWidget {
     return Container(
       height: ScreenUtil().setHeight(160),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
               flex: 1,
