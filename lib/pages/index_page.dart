@@ -3,6 +3,7 @@ import '../pages/tabs/home_page.dart';
 import '../pages/tabs/category_page.dart';
 import '../pages/tabs/car_page.dart';
 import '../pages/tabs/mine_page.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class IndexPage extends StatefulWidget{
   @override
@@ -42,6 +43,8 @@ class _IndexPageState extends State<IndexPage>{
 
   @override
   Widget build(BuildContext context) {
+    //屏幕适配
+    ScreenUtil.instance=ScreenUtil(width: 750,height: 1334)..init(context);
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -53,7 +56,10 @@ class _IndexPageState extends State<IndexPage>{
           });
         },
       ),
-      body: tabBodies[currentIndex],
+      body: IndexedStack(
+        index: currentIndex,
+        children: tabBodies,
+      ),
     );
   }
 }
