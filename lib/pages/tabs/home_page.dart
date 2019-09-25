@@ -13,6 +13,7 @@ class HomePage extends StatefulWidget{
 }
 
 class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin{
+
   @override
   bool get wantKeepAlive => true;
 
@@ -36,7 +37,9 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin{
             //商品推荐
             Recommend(list: getHomeRecommendList()),
             //楼层商品
-            FloorGoods(list: getHomeFloorList(),)
+            FloorGoods(list: getHomeFloorList(),),
+            //火爆商品
+
           ],
         ),
       ),
@@ -325,6 +328,7 @@ class FloorGoods extends StatelessWidget {
     );
   }
 }
+
 
 
 

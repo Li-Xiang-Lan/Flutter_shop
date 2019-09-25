@@ -83,3 +83,19 @@ List<Map> getHomeFloorList(){
     }
   ];
 }
+
+
+List<Map> getHomeHotGoodsList(){
+  return [
+    {"name":"名字1","price":"100","oldPrice":"200","image":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1569323641092&di=f877310d8aea5da97bdbd7f9ec36a41b&imgtype=0&src=http%3A%2F%2Fimage5.huangye88.cn%2F2013%2F03%2F17%2F54807a24f324677f.jpg"},
+    {"name":"名字2","price":"100","oldPrice":"200","image":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1569323641091&di=4fd05833481343e41c96780d9148f5a7&imgtype=0&src=http%3A%2F%2Fpic162.nipic.com%2Ffile%2F20180419%2F17561636_084224220032_2.jpg"},
+    {"name":"名字3","price":"100","oldPrice":"200","image":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1569323641090&di=e5f109bcdfc05e244a65f40f066e46ab&imgtype=0&src=http%3A%2F%2Fpic75.nipic.com%2Ffile%2F20150818%2F20967877_101425828000_2.jpg"},
+    {"name":"名字4","price":"100","oldPrice":"200","image":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1569323641090&di=292e7686eb20dd9538e78f6f6f6367a2&imgtype=0&src=http%3A%2F%2Fimg004.hc360.cn%2Fg1%2FM01%2FBC%2F43%2FwKhQL1KEpMqESNj7AAAAAHh0ZhQ650.jpg"},
+    {"name":"名字5","price":"100","oldPrice":"200","image":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1569323641089&di=b917596512ee5bfadcf952932bcbadd7&imgtype=0&src=http%3A%2F%2Fpic18.nipic.com%2F20120106%2F7453907_174008794000_2.jpg"},
+    {"name":"名字6","price":"100","oldPrice":"200","image":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1569323641087&di=5bb11766130042f08f6e94598eac641e&imgtype=0&src=http%3A%2F%2Fimg2.makepolo.net%2Fimages%2Fformals%2Fimg%2Fproduct%2F702%2F747%2F972ea313c1f2280e8326e8d4c65e2374.jpg"},
+    {"name":"名字7","price":"100","oldPrice":"200","image":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1569323641084&di=07829a971d12dcd6d6a37b0fec61d971&imgtype=0&src=http%3A%2F%2Fpic.sooshong.com%2Fpicture%2Fuserpic2%2F2014-10-25%2F69249720141025133608.jpg"},
+    {"name":"名字8","price":"100","oldPrice":"200","image":"https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2885999970,1292116150&fm=26&gp=0.jpg"},
+    {"name":"名字9","price":"100","oldPrice":"200","image":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1569323705075&di=74c1245bd2da00ae33d29f4208862e59&imgtype=0&src=http%3A%2F%2Fpic11.nipic.com%2F20101126%2F3542933_195402005683_2.jpg"},
+    {"name":"名字10","price":"100","oldPrice":"200","image":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1569323705072&di=77a6ed273c4bb0d7b82f80d178858145&imgtype=0&src=http%3A%2F%2Fpic5.nipic.com%2F20100104%2F51824_150443012791_2.jpg"},
+  ];
+}
