@@ -96,6 +96,18 @@ List<Map> getHomeHotGoodsList(){
     {"name":"名字7","price":"100","oldPrice":"200","image":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1569323641084&di=07829a971d12dcd6d6a37b0fec61d971&imgtype=0&src=http%3A%2F%2Fpic.sooshong.com%2Fpicture%2Fuserpic2%2F2014-10-25%2F69249720141025133608.jpg"},
     {"name":"名字8","price":"100","oldPrice":"200","image":"https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2885999970,1292116150&fm=26&gp=0.jpg"},
     {"name":"名字9","price":"100","oldPrice":"200","image":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1569323705075&di=74c1245bd2da00ae33d29f4208862e59&imgtype=0&src=http%3A%2F%2Fpic11.nipic.com%2F20101126%2F3542933_195402005683_2.jpg"},
-    {"name":"名字10","price":"100","oldPrice":"200","image":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1569323705072&di=77a6ed273c4bb0d7b82f80d178858145&imgtype=0&src=http%3A%2F%2Fpic5.nipic.com%2F20100104%2F51824_150443012791_2.jpg"},
+    {"name":"名字10","price":"100","oldPrice":"200","image":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1569323705072&di=77a6ed273c4bb0d7b82f80d178858145&imgtype=0&src=http%3A%2F%2Fpic5.nipic.com%2F20100104%2F51824_150443012791_2.jpg"}
   ];
+}
+
+List<Map> getCategory(){
+  List<Map> list=new List();
+  for(var i=0;i<=20;i++){
+    Map<String,String> map=new Map();
+    for(var j=0;j<=20;j++){
+      map.addAll({"name":"商品名字$i-$j","price":"100","oldPrice":"200","image":"https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2885999970,1292116150&fm=26&gp=0.jpg"},);
+    }
+    list.add({"name":"分类名字$i","content":map});
+  }
+  return list;
 }

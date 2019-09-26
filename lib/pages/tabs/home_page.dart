@@ -4,6 +4,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../util/Util.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class HomePage extends StatefulWidget{
   @override
@@ -13,36 +14,121 @@ class HomePage extends StatefulWidget{
 }
 
 class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin{
+  int page=1;
+  List<Map> hotGoodsList=[];
 
   @override
   bool get wantKeepAlive => true;
 
   @override
+  void initState() {
+    super.initState();
+    getHotGoodsList();
+  }
+
+  void getHotGoodsList(){
+    setState(() {
+      hotGoodsList.addAll(getHomeHotGoodsList());
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("百姓生活+"),),
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            //banner
-            MySwiper(swiperList:getHomeBanner()),
-            //分类gridview
-            CategoryGridView(list: getHomeCategory(),),
-            //广告控件
-            AdWidget(),
-            SizedBox(height: 10,),
-            //拨打电话
-            LeaderPhone(),
-            SizedBox(height: 10),
-            //商品推荐
-            Recommend(list: getHomeRecommendList()),
-            //楼层商品
-            FloorGoods(list: getHomeFloorList(),),
-            //火爆商品
+      body:
+          EasyRefresh(
+            footer: ClassicalFooter(
+              bgColor: Colors.white,
+              textColor: Colors.pink,
+              infoColor: Colors.pink,
 
+            ),
+              child:
+                ListView(
+                  shrinkWrap: true,
+                  children: <Widget>[
+                    //banner
+                    MySwiper(swiperList:getHomeBanner()),
+                    //分类gridview
+                    CategoryGridView(list: getHomeCategory(),),
+                    //广告控件
+                    AdWidget(),
+                    SizedBox(height: 10,),
+                    //拨打电话
+                    LeaderPhone(),
+                    SizedBox(height: 10),
+                    //商品推荐
+                    Recommend(list: getHomeRecommendList()),
+                    //楼层商品
+                    FloorGoods(list: getHomeFloorList(),),
+                    //火爆商品
+                    _hotGoods()
+                  ],
+                ),
+            onLoad: (){
+              getHotGoodsList();
+            },
+          )
+    );
+  }
+
+  Widget _hotGoods(){
+    return Column(
+      children: <Widget>[
+        //标题
+        Container(
+          alignment: Alignment.center,
+          height: ScreenUtil().setHeight(100),
+          child: Text("火爆专区"),
+        ),
+        //item
+        _hotGoodsItem()
+      ],
+    );
+  }
+
+  Widget _hotGoodsItem(){
+    return GridView.count(
+      childAspectRatio: 375/650,
+      physics: NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      crossAxisCount: 2,
+      children: hotGoodsList.map((v){
+        return InkWell(
+          onTap: (){},
+          child:Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Container(
+              height: ScreenUtil().setHeight(500),
+              child: Image.network(v["image"],fit: BoxFit.cover,),
+            ),
+            Container(
+              alignment: Alignment.center,
+              child: Text(
+                v["name"],
+                style: TextStyle(
+                    color: Colors.pink
+                ),
+              ),
+            ),
+            Row(
+              children: <Widget>[
+                Text("￥${v["price"]}"),
+                Text(
+                  "￥${v["oldPrice"]}",
+                  style: TextStyle(
+                      fontSize: ScreenUtil().setSp(16),
+                      decoration: TextDecoration.lineThrough
+                  ),
+                ),
+              ],
+            )
           ],
         ),
-      ),
+        );
+      }).toList(),
     );
   }
 }
@@ -328,7 +414,6 @@ class FloorGoods extends StatelessWidget {
     );
   }
 }
-
 
 
 
