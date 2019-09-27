@@ -103,11 +103,11 @@ List<Map> getHomeHotGoodsList(){
 List<Map> getCategory(){
   List<Map> list=new List();
   for(var i=0;i<=20;i++){
-    Map<String,String> map=new Map();
+    List<Map> innerList=new List();
     for(var j=0;j<=20;j++){
-      map.addAll({"name":"商品名字$i-$j","price":"100","oldPrice":"200","image":"https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2885999970,1292116150&fm=26&gp=0.jpg"},);
+      innerList.add({"name":"商品名字$i-$j","price":"100","oldPrice":"200","image":"https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2885999970,1292116150&fm=26&gp=0.jpg"},);
     }
-    list.add({"name":"分类名字$i","content":map});
+    list.add({"name":"分类名字$i","content":innerList});
   }
   return list;
 }

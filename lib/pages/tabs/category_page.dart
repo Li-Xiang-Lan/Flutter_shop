@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../service/service_method.dart';
+import 'package:provide/provide.dart';
+import '../../provide/child_category.dart';
 
 class CategoryPage extends StatefulWidget {
   @override
@@ -14,7 +16,12 @@ class _CategoryPageState extends State<CategoryPage> {
       appBar: AppBar(title: Text("商品分类"),),
       body: Row(
         children: <Widget>[
-          LeftCategoryNov()
+          LeftCategoryNov(),
+          Column(
+            children: <Widget>[
+              RightCategoryNov()
+            ],
+          )
         ],
       ),
     );
@@ -28,6 +35,7 @@ class LeftCategoryNov extends StatefulWidget {
 
 class _LeftCategoryNovState extends State<LeftCategoryNov> {
   List<Map> categoryList=new List();
+  int clickIndex=0;
 
   @override
   void initState() {
@@ -45,24 +53,81 @@ class _LeftCategoryNovState extends State<LeftCategoryNov> {
       child: ListView.builder(
           itemCount: categoryList.length,
           itemBuilder: (context,index){
-            return _inkwellItem(categoryList[index]);
+            return _inkwellItem(index);
           }),
     );
   }
 
-  Widget _inkwellItem(item){
+  Widget _inkwellItem(index){
     return InkWell(
-      onTap: (){},
+      onTap: (){
+        setState(() {
+          clickIndex=index;
+        });
+        Provide.value<ChildCategory>(context).setCategory(index);
+      },
       child: Container(
         alignment: Alignment.centerLeft,
         height: ScreenUtil().setHeight(100),
         padding: EdgeInsets.only(left: 10),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: index==clickIndex?Colors.black12: Colors.white,
           border: Border(bottom: BorderSide(width: 1,color: Colors.black12))
         ),
         child: Text(
-          item["name"],
+          categoryList[index]["name"],
+        ),
+      ),
+    );
+  }
+}
+
+//右侧顶部导航
+class RightCategoryNov extends StatefulWidget {
+  @override
+  _RightCategoryNovState createState() => _RightCategoryNovState();
+}
+
+class _RightCategoryNovState extends State<RightCategoryNov> {
+//  List list=["全部","舍得","茅台","郎酒","五粮液","老白干","江小白"];
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: ScreenUtil().setWidth(80),
+      width: ScreenUtil().setWidth(750-180),
+      child: Provide<ChildCategory>(
+        builder: (context,child,category){
+          print("=============有效${category.totalMap.toString()}");
+          return ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: category.totalMap["title"].length,
+              itemBuilder: (context,index){
+                return _itemInkwell(category.totalMap["title"][index]);
+              }
+          );
+        },
+      ),
+    );
+  }
+  
+  Widget _itemInkwell(item){
+    return InkWell(
+      onTap: (){},
+      child: Container(
+        alignment: Alignment.center,
+        width: ScreenUtil().setWidth(120),
+        height: ScreenUtil().setHeight(80),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border(bottom:BorderSide(width: 1,color: Colors.black12))
+        ),
+        child: Text(
+          item,
+          style: TextStyle(
+            fontSize: ScreenUtil().setSp(30)
+          ),
         ),
       ),
     );
